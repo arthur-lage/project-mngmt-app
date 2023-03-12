@@ -75,12 +75,10 @@ export function AddClientModal() {
               </h5>
               <button
                 type="button"
-                className="close rounded"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+              ></button>
             </div>
             <form onSubmit={handleCreateClient}>
               <div className="modal-body">
