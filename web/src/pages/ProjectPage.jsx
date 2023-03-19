@@ -7,6 +7,7 @@ import { Loading } from "../components/Loading";
 import { ClientInfo } from "../components/ClientInfo";
 
 import { DELETE_PROJECT } from "../mutations/projectMutations";
+import { EditProjectModal } from "../components/EditProjectModal";
 
 export function ProjectPage() {
   const { projectId } = useParams();
@@ -34,13 +35,11 @@ export function ProjectPage() {
     console.error(error);
   }
 
-  async function handleEditProject() {}
-
   return (
     <>
       {!loading && !error ? (
         <div className="mt-5 mx-auto w-75 card p-5">
-          <Link className="btn btn-light btn-sm w-25 d-inline ms-auto" to="/">
+          <Link className="btn btn-light btn-sm w-sm d-inline ms-auto" to="/">
             Back
           </Link>
           <h1>{data.project.name}</h1>
@@ -53,15 +52,18 @@ export function ProjectPage() {
 
           <div className="d-flex flex-column align-items-center gap-2 mt-4">
             <button
-              onClick={handleEditProject}
               className="btn btn-secondary w-100"
+              data-bs-toggle="modal"
+              data-bs-target="#editProjectModal"
             >
               Edit
             </button>
-            <button onClick={deleteProject} className="btn btn-primary w-100">
+            <button onClick={deleteProject} className="btn btn-danger w-100">
               Delete
             </button>
           </div>
+
+          <EditProjectModal project={data.project} />
         </div>
       ) : (
         <h2>Could not find project.</h2>
